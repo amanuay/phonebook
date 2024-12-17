@@ -43,10 +43,6 @@ const generateId = () => {
     return Math.floor(Math.random() * 99999)
 }
 
-app.get('/', (request, response) => {
-    response.send(`<h1> total no of persons: ${persons.length}</h1>`)
-})
-
 app.get('/info', (request, response) => {
     const time = new Date()
     response.send(`<div>Phonebook has info for ${generateId() - 1} people <br />${time.toDateString()} ${time.toTimeString()}</div>`)
