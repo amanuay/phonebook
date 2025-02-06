@@ -21,6 +21,11 @@ app.use(express.json())
 let persons = []
 Person.find().then(result => persons.push(...result))
 
+app.get('/ping', (req, res) => {
+  res.send('Pong')
+})
+
+
 app.get('/info', (request, response) => {
   const time = new Date()
   response.send(`<div>Phonebook has info for ${persons.length} people <br />${time.toDateString()} ${time.toTimeString()}</div>`)
@@ -113,6 +118,13 @@ const errorHandler = (error, request, response, next) => {
 
 // this has to be the last loaded middleware, also all the routes should be registered before this!
 app.use(errorHandler)
+
+setInterval(() => {
+  fetch('https://phonebook-s24d.onrender.com/ping')
+    .then((res) => res.text())
+    .then((data) => console.log('Ping:', data))
+    .catch((err) => console.error('Ping error:', err))
+}, 60 * 1000 * 5)
 
 const PORT = 3001
 app.listen(PORT, () => {
