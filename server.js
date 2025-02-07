@@ -122,9 +122,9 @@ app.use(errorHandler)
 setInterval(() => {
   fetch('https://phonebook-s24d.onrender.com/ping')
     .then((res) => res.text())
-    .then((data) => console.log('Ping:', data))
+    .then((data) => console.log(data))
     .catch((err) => console.error('Ping error:', err))
-}, 60 * 1000 * 5)
+}, 60 * 1000 * 12)
 
 const PORT = 3001
 app.listen(PORT, () => {
